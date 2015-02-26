@@ -12,7 +12,6 @@ jsxhinter.JSHINT = jsxhinter.JSXHINT;
 
 
 // JSHint and jscs
-
 gulp.task('lint', function () {
   return gulp.src(['./src/**/*.jsx'])
     .pipe(plumber())

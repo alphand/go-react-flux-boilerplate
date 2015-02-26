@@ -54,10 +54,10 @@ gulp.task('browserify',['lint'], function (callback) {
         // desired output filename here.
         .pipe(source(bundleConfig.outputName))
         .pipe(buffer())
-        // .pipe(sourcemaps.init({loadMaps: true}))
+        .pipe(sourcemaps.init({loadMaps: true}))
         // .pipe(uglify())
         // Specify the output destination
-        // .pipe(sourcemaps.write('./'))    
+        .pipe(sourcemaps.write('./'))    
         .pipe(gulp.dest(bundleConfig.dest))
         .on('end', reportFinished);
     };

@@ -1,5 +1,7 @@
 var React = require('react');
 
+var Footer = require("./footer.jsx");
+
 var layout = React.createClass({
 
   render: function() {
@@ -10,7 +12,7 @@ var layout = React.createClass({
           <div className="footer-push"></div>
         </div>
         <div className="footer">
-        just some simple footer
+          <Footer />
         </div>
       </div>
     );
