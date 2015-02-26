@@ -20,6 +20,14 @@ var buffer       = require('vinyl-buffer');
 var sourcemaps   = require('gulp-sourcemaps');
 var reactify     = require('reactify');
 var gutil        = require('gulp-util');
+var merge        = require('merge-stream');
+var plumber      = require('gulp-plumber');
+var jshint       = require('gulp-jshint');
+var stylish = require('jshint-stylish');
+var jsxhinter    = require('jshint-jsx');
+jsxhinter.JSHINT = jsxhinter.JSXHINT;
+
+
 
 gulp.task('browserify',['lint'], function (callback) {
 
@@ -41,11 +49,11 @@ gulp.task('browserify',['lint'], function (callback) {
     });
 
 
-    var bundle = function () {
+    var bundle = function (changedFile) {
       // Log when bundling starts
       bundleLogger.start(bundleConfig.outputName);
 
-      return bundler
+      var compileStream =  bundler
         .bundle()
         // Report compile errors
         .on('error', handleErrors)
@@ -60,6 +68,21 @@ gulp.task('browserify',['lint'], function (callback) {
         .pipe(sourcemaps.write('./'))    
         .pipe(gulp.dest(bundleConfig.dest))
         .on('end', reportFinished);
+
+      if(changedFile){
+        gutil.log("coming here", changedFile);
+
+        var lintStream = gulp.src(changedFile)
+          .pipe(plumber())
+          // .pipe(jscs())
+          .pipe(jshint({linter:jsxhinter.JSHINT}))
+          .on('error', handleErrors)
+          .pipe(jshint.reporter(stylish)); // Console output
+
+        return merge(lintStream, compileStream);
+      }
+
+      return compileStream;
     };
 
     // if (global.isWatching) {

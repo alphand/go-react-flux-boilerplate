@@ -18293,11 +18293,11 @@ var React = require('react');
 var Layout = require("./components/common/layout.jsx")
 
 var app = React.createClass({displayName: "app",
-  
+
   render: function() {
     return (
       React.createElement(Layout, null, 
-        React.createElement("h1", null, " Hai Dunia keep now is baru oke")
+        React.createElement("h1", null, " Hai Dunia keep now")
       )
     );
   }
