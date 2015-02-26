@@ -6,11 +6,10 @@ var app = React.createClass({
   render: function() {
     return (
       <Layout>
-        <h1> Hai Dunia keep faster! </h1>
+        <h1> Hai Dunia keep now is good for dev! </h1>
       </Layout>
     );
   }
 
 });
-
 module.exports = app;

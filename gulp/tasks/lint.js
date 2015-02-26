@@ -3,11 +3,11 @@ var plumber = require('gulp-plumber');
 var jscs = require('gulp-jscs');
 var jshint = require('gulp-jshint');
 var stylish = require('jshint-stylish');
+var handleErrors = require('../util/handleErrors');
 var config = require("../config");
-var source       = require('vinyl-source-stream');
-var buffer       = require('vinyl-buffer');
 
-var jsxhint = require('jsxhint');
+var jsxhinter = require('jshint-jsx');
+jsxhinter.JSHINT = jsxhinter.JSXHINT;
 // var jsxhint = jshint({linter:'jsxhint'});
 
 
@@ -17,6 +17,7 @@ gulp.task('lint', function () {
   return gulp.src(['./src/**/*.jsx'])
     .pipe(plumber())
     // .pipe(jscs())
-    .pipe(jshint({linter:jsxhint}))
+    .pipe(jshint({linter:jsxhinter.JSHINT}))
+    .on('error', handleErrors)
     .pipe(jshint.reporter(stylish)); // Console output
 });
