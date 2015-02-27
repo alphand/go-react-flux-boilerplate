@@ -6,7 +6,7 @@ var app = React.createClass({
   render: function() {
     return (
       <Layout>
-        <h1> Hai Dunia keep now</h1>
+        <h1> Hai Dunia keep now! </h1>
       </Layout>
     );
   }
