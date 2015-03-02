@@ -3,13 +3,13 @@ var Router = require('react-router');
 
 var Route = Router.Route,
     DefaultRoute = Router.DefaultRoute,
-    NotFoundRoute = Router.NotFoundRoute
+    NotFoundRoute = Router.NotFoundRoute,
     RouteHandler = Router.RouteHandler,
     Link = Router.Link; 
 
 
 var App = require("./app.jsx");
-var NotFound = require("./components/common/notfound.jsx")
+var NotFound = require("./components/common/notfound.jsx");
 
 
 var routes = (
